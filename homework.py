@@ -30,7 +30,7 @@ formatter = logging.Formatter(
 handler = logging.StreamHandler()
 handler.setFormatter(formatter)
 logger.addHandler(handler)
-old_message = ''
+before_message = ''
 
 
 def send_message(bot, message):
@@ -121,7 +121,7 @@ def main():
     current_timestamp = int(time.time()) - RETRY_TIME
     if not check_tokens():
         raise SystemExit('Ошибка токенов.')
-    global old_message
+    global before_message
 
     while True:
         try:
@@ -140,9 +140,9 @@ def main():
         except Exception as error:
             message = f'Сбой в работе программы: {error}'
             logger.error(message)
-            if message != old_message:
+            if message != before_message:
                 bot.send_message(TELEGRAM_CHAT_ID, message)
-                old_message = message
+                before_message = message
         finally:
             current_timestamp = int(time.time())
             time.sleep(RETRY_TIME)

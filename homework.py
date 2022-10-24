@@ -71,14 +71,14 @@ def get_api_answer(current_timestamp):
                 f'Ошибка!Статус: {homework_statuses.status_code},'
                 f'параметры запроса: {homework_statuses.headers},'
                 f' {homework_statuses.url}, {timestamp}'
-                f'контент ответа: {response.json()}')
+                f'контент ответа: {response.json()}.')
 
 
 def check_response(response):
-    """
-    Провряем ответ на корректность. 
-    Если ключ [homeworks] не найден, 
-    то всё перехватится в main().
+    """ 
+    Провряем ответ на корректность.  
+    Если ключ [homeworks] не найден,  
+    то всё перехватится в main(). 
     """
     if type(response) != dict:
         raise TypeError('Ответ от API не словарь')
@@ -119,7 +119,7 @@ def main():
                 raise SystemError('Передана не дата.')
             response = get_api_answer(current_timestamp)
             response = check_response(response)
-            if response == True:
+            if response is True:
                 homework_status = parse_status(response[0])
                 if homework_status is not None:
                     send_message(bot, homework_status)

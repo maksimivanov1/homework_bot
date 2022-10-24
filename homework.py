@@ -1,8 +1,7 @@
 import logging
 import os
 import time
-from http import HTTPStatus
-from urllib import request, response
+from urllib import response
 
 import requests
 import telegram
@@ -70,15 +69,16 @@ def get_api_answer(current_timestamp):
         else:
             raise SystemError(
                 f'Ошибка!Статус: {homework_statuses.status_code},'
-                f'параметры запроса: {homework_statuses.headers}, {homework_statuses.url}, {timestamp}'
+                f'параметры запроса: {homework_statuses.headers},'
+                f' {homework_statuses.url}, {timestamp}'
                 f'контент ответа: {response.json()}')
 
 
 def check_response(response):
-    """ 
+    """
     Провряем ответ на корректность. 
     Если ключ [homeworks] не найден, 
-    то всё перехватится в main(). 
+    то всё перехватится в main().
     """
     if type(response) != dict:
         raise TypeError('Ответ от API не словарь')

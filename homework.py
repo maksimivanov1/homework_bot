@@ -75,10 +75,10 @@ def get_api_answer(current_timestamp):
 
 
 def check_response(response):
-    """ 
-    Провряем ответ на корректность.  
+    """
+    Провряем ответ на корректность.
     Если ключ [homeworks] не найден,  
-    то всё перехватится в main(). 
+    то всё перехватится в main().
     """
     if type(response) != dict:
         raise TypeError('Ответ от API не словарь')

@@ -52,7 +52,7 @@ def get_api_answer(current_timestamp):
         'url': ENDPOINT,
         'headers': HEADERS,
         'params': params}
-        
+
     try:
         homework_statuses = requests.get(**req_dict)
     except Exception as error:
